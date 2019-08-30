@@ -17,13 +17,8 @@ steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: 9.x
-- script: npm install
+- script: npm install-
 
-- task: Gradle@2
-  inputs:
-    workingDirectory: '/Users/vsts/agent/2.155.1/work/1/s/android'
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+- task: Bash@3
+- script: 'cd android && ./gradlew assembleDebug'
+  
