@@ -21,7 +21,7 @@ steps:
 
 - task: Gradle@2
   inputs:
-    workingDirectory: './android'
+    workingDirectory: '/Users/vsts/agent/2.155.1/work/1/s/android'
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
