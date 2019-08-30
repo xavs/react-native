@@ -9,15 +9,12 @@ trigger:
 pool:
   vmImage: 'macos-latest'
   strategy:
-  matrix:    
-    node_9_x:
-      node_version: 9.x
 
 steps:
 - task: NodeTool@0 
   inputs:
     versionSpec: 9.x
-- script: npm install-
+- script: npm install
 
 - task: Bash@3
 - script: 'cd android && ./gradlew assembleDebug'
