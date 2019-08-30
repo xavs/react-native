@@ -17,7 +17,6 @@ steps:
 - script: npm install
 
 - task: Bash@3
-- script:
   inputs:
       targetType: 'inline'
       script: cd android && gradlew assembleDebug
