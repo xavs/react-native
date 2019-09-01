@@ -29,4 +29,4 @@ steps:
     tagSource: manual
     tag: $(Build.BuildNumber)      
     assets: |
-         $(Build.ArtifactStagingDirectory)/android/app/build/outputs/apk/debug/app-debug.apk
+         android/app/build/outputs/apk/debug/app-debug.apk
