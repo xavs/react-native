@@ -19,7 +19,7 @@ steps:
 - task: Bash@3
   inputs:
       targetType: 'inline'
-      script: echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore && (cd android && ./gradlew assembleDebug)
+      script: echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore && (cd android && ./gradlew assembleDebug) && ls $(Build.ArtifactStagingDirectory) && ls android/app/build/outputs/apk/debug/
 
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'
