@@ -15,7 +15,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      DEBUG_KEY: ${{ DEBUG_KEY }}
 
     steps:
     - name: setup nodejs
@@ -33,13 +33,11 @@ jobs:
       run: npm install
 
     - name: Setup android keys
+      run: "echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore"
       shell: bash
-      run: echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore 
 
-    - name: Generate apk
+    - name: Generate apk      
+      run: "base64 --decode > android/app/debug.keystore && (cd android && ./gradlew assembleDebug) && echo $(Build.ArtifactStagingDirectory) && ls android/app/build/outputs/apk/debug/"
       shell: bash
-      run: | 
-        base64 --decode > android/app/debug.keystore 
-        && (cd android && ./gradlew assembleDebug) 
-        && echo $(Build.ArtifactStagingDirectory) 
-        && ls android/app/build/outputs/apk/debug/
+
+
