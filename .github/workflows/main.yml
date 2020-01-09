@@ -30,7 +30,7 @@ jobs:
         java-version: 1.8
 
     - name: Install nodejs dependencies
-    - run: npm install
+      run: npm install
 
     - name: Setup android keys
       shell: bash
@@ -43,4 +43,3 @@ jobs:
         && (cd android && ./gradlew assembleDebug) 
         && echo $(Build.ArtifactStagingDirectory) 
         && ls android/app/build/outputs/apk/debug/
-
