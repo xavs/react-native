@@ -5,10 +5,10 @@ on:
   # but only for the develop branch
   push:
     branches:
-      - master
+      - develop
   pull_request:
     branches:
-      - master
+      - develop
 
 jobs:
   build:
@@ -31,9 +31,10 @@ jobs:
         run: npm install
  
       - name: Setup android keys
-        run: "echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore"
+        run: "echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore && echo $(pwd)"
         shell: bash
 
       - name: Generate apk
-        run: "base64 --decode > android/app/debug.keystore && (cd android && ./gradlew assembleDebug) && echo $(Build.ArtifactStagingDirectory) && ls android/app/build/outputs/apk/debug/"
+        run: "(cd android && ./gradlew assembleDebug) && echo $(Build.ArtifactStagingDirectory) && ls android/app/build/outputs/apk/debug/"
         shell: bash
+        
