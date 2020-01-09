@@ -31,7 +31,9 @@ jobs:
         run: npm install
  
       - name: Setup android keys
-        run: "echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore && echo $(pwd)"
+        env: # Or as an environment variable
+          DEBUG_KEY: ${{ secrets.DEBUG_KEY }}
+        run: "echo $DEBUG_KEY | base64 --decode > android/app/debug.keystore && echo $(pwd) && cat android/app/debug.keystore"
         shell: bash
 
       - name: Generate apk
