@@ -15,6 +15,21 @@ jobs:
 
     runs-on: ubuntu-latest
     steps: 
+      - name: setup nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'    
+      - name: setup co
+        uses: actions/checkout@v2
+  
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+ 
+      - name: Install nodejs dependencies
+        run: npm install
+        
       - name: Setup android keys
         env: # Or as an environment variable
           DEBUG_KEY: ${{ secrets.DEBUG_KEY }}
