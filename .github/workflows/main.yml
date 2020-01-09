@@ -18,7 +18,7 @@ jobs:
       - name: Setup android keys
         env: # Or as an environment variable
           DEBUG_KEY: ${{ secrets.DEBUG_KEY }}
-        run: "echo $DEBUG_KEY > test && head test && echo -e $DEBUG_KEY | base64 --decode > android/app/debug.keystore && echo $(pwd) && cat android/app/debug.keystore"
+        run: "mkdir -p android/app/ && echo -e $DEBUG_KEY | base64 --decode > android/app/debug.keystore && echo $(pwd) && cat android/app/debug.keystore"
         shell: bash
 
       - name: Generate apk
